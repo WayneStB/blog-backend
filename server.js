@@ -2,6 +2,7 @@
 const express = require("express");
 const server = express();
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 server.use(
     cors({
         credentials: true,
@@ -13,7 +14,6 @@ server.use(
 );
 const bodyParser = require("body-parser");
 server.use(bodyParser.json());
-const bcrypt = require("bcrypt");
 
 const sessions = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(sessions.Store);
