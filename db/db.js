@@ -1,5 +1,6 @@
 // #3 set up DB models
 const Sequelize = require("sequelize");
+const bcrypt = require("bcrypt");
 
 let options = {};
 
@@ -25,12 +26,38 @@ if (!databaseURL) {
 const db = new Sequelize(databaseURL, {});
 const User = require("./User")(db);
 const Post = require("./Post")(db);
+
+//#10 seeding the database
+const createFirstUser = async () => {
+    const users = await User.findAll();
+    if (users.length === 0) {
+        User.create({
+            username: "wayne",
+            password: bcrypt.hashSync("wonderful", 10),
+        });
+    }
+};
+
+const creatSecondUser = async () => {
+    const sencondUser = await User.findOne({
+        where: { username: "tesla" },
+    });
+    if (!sencondUser) {
+        User.create({
+            username: "tesla",
+            password: bcrypt.hashSync("models", 10),
+        });
+    }
+};
+
 // #5 connect and sync to DB
 const connectToDB = async () => {
     try {
         await db.authenticate();
         console.log("Connected successfully");
-        db.sync(); //#6 sync by creating the tables based off our models if they don't exist already
+        await db.sync(); //#6 sync by creating the tables based off our models if they don't exist already
+        await createFirstUser();
+        await creatSecondUser();
     } catch (error) {
         console.error(error);
         console.error("PANIC! DB PROBLEMS!");
