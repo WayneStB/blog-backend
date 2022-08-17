@@ -23,7 +23,7 @@ if (!databaseURL) {
     };
 }
 
-const db = new Sequelize(databaseURL, {});
+const db = new Sequelize(databaseURL, options);
 const User = require("./User")(db);
 const Post = require("./Post")(db);
 
@@ -62,7 +62,7 @@ const connectToDB = async () => {
         console.error(error);
         console.error("PANIC! DB PROBLEMS!");
     }
-    Post.belongsTo(User, { foreignKey: "authorID" });
+    // Post.belongsTo(User, { foreignKey: "authorID" });
 };
 
 connectToDB();
