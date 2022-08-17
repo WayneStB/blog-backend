@@ -2,7 +2,15 @@
 const express = require("express");
 const server = express();
 const cors = require("cors");
-server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+server.use(
+    cors({
+        credentials: true,
+        origin: [
+            "https://waynestb-blog-frontend.herokuapp.com",
+            "http://localhost:3000",
+        ],
+    })
+);
 const bodyParser = require("body-parser");
 server.use(bodyParser.json());
 const bcrypt = require("bcrypt");
@@ -116,9 +124,15 @@ server.get("/author/:id", async (req, res) => {
         }),
     });
 });
+// if heroku, porcess.env.PORT will be provided
+let port = process.env.port;
+if (!port) {
+    // otherwise, fallback to location 3001
+    port = 3001;
+}
 
 //#9 run express API server in background for incoming request
-server.listen(3001, () => {
+server.listen(port, () => {
     console.log("Server running.");
 });
 
