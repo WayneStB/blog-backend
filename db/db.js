@@ -11,7 +11,7 @@ if (!databaseURL) {
         logging: false,
     };
 } else {
-    // we're not on localhost
+    // we're not on localhost h
     options = {
         logging: false,
         dialectOptions: {
