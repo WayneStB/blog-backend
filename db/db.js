@@ -14,7 +14,7 @@ if (!databaseURL) {
     // we're not on localhost
     options = {
         logging: false,
-        dailectOptions: {
+        dialectOptions: {
             ssl: {
                 require: true,
                 rejectUnauthorized: false,
