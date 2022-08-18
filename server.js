@@ -125,7 +125,7 @@ server.get("/author/:id", async (req, res) => {
         }),
     });
 });
-// if heroku, porcess.env.PORT will be provided
+// if heroku, porcess.env.PORT will be provide
 let port = process.env.PORT;
 if (!port) {
     // otherwise, fallback to location 3001
