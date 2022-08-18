@@ -7,8 +7,8 @@ server.use(
     cors({
         credentials: true,
         origin: [
-            "https://waynestb-blog-frontend.herokuapp.com",
             "http://localhost:3000",
+            "https://waynestb-blog-frontend.herokuapp.com",
         ],
     })
 );
@@ -16,8 +16,9 @@ const bodyParser = require("body-parser");
 server.use(bodyParser.json());
 
 const sessions = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(sessions.Store);
 const { db, User, Post } = require("./db/db.js");
+const SequelizeStore = require("connect-session-sequelize")(sessions.Store);
+
 {
     /* #2 DB setup  #8 */
 }
@@ -125,7 +126,7 @@ server.get("/author/:id", async (req, res) => {
     });
 });
 // if heroku, porcess.env.PORT will be provided
-let port = process.env.port;
+let port = process.env.PORT;
 if (!port) {
     // otherwise, fallback to location 3001
     port = 3001;

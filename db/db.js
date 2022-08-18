@@ -17,7 +17,7 @@ if (!databaseURL) {
         dailectOptions: {
             ssl: {
                 require: true,
-                rejectYnauthorized: false,
+                rejectUnauthorized: false,
             },
         },
     };
