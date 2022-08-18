@@ -62,7 +62,7 @@ const connectToDB = async () => {
         console.error(error);
         console.error("PANIC! DB PROBLEMS!");
     }
-    // Post.belongsTo(User, { foreignKey: "authorID" });
+    Post.belongsTo(User, { foreignKey: "authorID" });
 };
 
 connectToDB();
